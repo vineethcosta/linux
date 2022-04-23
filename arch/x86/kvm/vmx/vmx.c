@@ -76,8 +76,8 @@
 MODULE_AUTHOR("Qumranet");
 MODULE_LICENSE("GPL");
 
-extern atomic64_t cnt_exit;
-extern atomic_t count_the_exits;
+extern atomic64_t total_exit_count;
+extern atomic_t counter_for_exits;
 
 
 #ifdef MODULE
@@ -6024,13 +6024,13 @@ void dump_vmcs(struct kvm_vcpu *vcpu)
  */
 static int __vmx_handle_exit(struct kvm_vcpu *vcpu, fastpath_t exit_fastpath)
 {
-	uint64_t start = rdtsc();
+	uint64_t starting = rdtsc();
 	struct vcpu_vmx *vmx = to_vmx(vcpu);
 	union vmx_exit_reason exit_reason = vmx->exit_reason;
 	u32 vectoring_info = vmx->idt_vectoring_info;
 	u16 exit_handler_index;
 	
-	atomic_inc(&cnt_exit);
+	atomic_inc(&total_exit_count);
 	uint64_t ending;
 
 	
@@ -6193,7 +6193,7 @@ static int __vmx_handle_exit(struct kvm_vcpu *vcpu, fastpath_t exit_fastpath)
 	
 	ending = rdtsc();
 
-	atomic64_fetch_add(end-start, &cnt_exit);
+	atomic64_fetch_add(ending-starting, &counter_for_exits);
 
 	return kvm_vmx_exit_handlers[exit_handler_index](vcpu);
 
