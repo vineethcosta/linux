@@ -18,4 +18,25 @@ sudo insmod ./cmpe283.ko
 6) Use dmesg to log the VMX features in the Kernel log
 
 
+Assignment 2: 
+Make the linux kernel environment ready by cloning the git and executing the commands below:
+1) cp /boot/config-$(uname -r) .config
+2) make oldconfig
+3) make -j 8 modules_install
+4) make install
+
+
+
+After making relevant changes to cpuid.c and vmx.c, compile the kernel using the commands below
+
+a) make -j 8 modules
+b) make INSTALL_MOD_STRIP=1 modules_install
+c) rmmod kvm_intel
+d) rmmod kvm
+e) modprobe kvm
+f) modprobe kvm_intel
+
+
+
+
 
