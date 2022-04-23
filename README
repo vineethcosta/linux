@@ -39,6 +39,10 @@ f) modprobe kvm_intel
 
 After staring Inner vm, we run the test file to check the output.
 
+Screenshots of the output:
+
+https://github.com/vineethcosta/linux/blob/master/Assignment2Screenshot.png
+
 
 
 
