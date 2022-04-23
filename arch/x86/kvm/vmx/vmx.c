@@ -76,7 +76,7 @@
 MODULE_AUTHOR("Qumranet");
 MODULE_LICENSE("GPL");
 
-extern atomic64_t total_exit_count;
+extern atomic64_t total_exit_time;
 extern atomic_t counter_for_exits;
 
 
@@ -6030,7 +6030,7 @@ static int __vmx_handle_exit(struct kvm_vcpu *vcpu, fastpath_t exit_fastpath)
 	u32 vectoring_info = vmx->idt_vectoring_info;
 	u16 exit_handler_index;
 	
-	atomic_inc(&total_exit_count);
+	atomic_inc(&total_exit_time);
 	uint64_t ending;
 
 	
