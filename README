@@ -1,18 +1,21 @@
-Linux kernel
-============
+CMPE 283: Number of team members: 1
 
-There are several guides for kernel developers and users. These guides can
-be rendered in a number of formats, like HTML and PDF. Please read
-Documentation/admin-guide/README.rst first.
+Name: Vineeth Reddy Pati
+SJSU ID: 015227810
 
-In order to build the documentation, use ``make htmldocs`` or
-``make pdfdocs``.  The formatted documentation can also be read online at:
+Assignment 1: Finding out what the VM-x features are.
 
-    https://www.kernel.org/doc/html/latest/
+This assignment basically deals with the functionality involved in determining what are the features available in a CPU.
 
-There are various text files in the Documentation/ subdirectory,
-several of them using the Restructured Text markup notation.
+Steps involved:
+1) Clone the repo https://github.com/torvalds/linux.git
+2) Navigate into the linux folder
+3) Create folder name CMPE283 and copy Makefile
+4) Execute the command make all inside that folder directory
+5) We can unload and load the modules using :
+sudo rmmod ./cmpe283.ko
+sudo insmod ./cmpe283.ko
+6) Use dmesg to log the VMX features in the Kernel log
 
-Please read the Documentation/process/changes.rst file, as it contains the
-requirements for building and running the kernel, and information about
-the problems which may result by upgrading your kernel.
+
+
