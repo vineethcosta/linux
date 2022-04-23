@@ -63,12 +63,22 @@
 #include "sgx.h"
 #include "trace.h"
 #include "vmcs.h"
+#include <asm/msr.h>
+#include <asm/atomic64_64.h>
+#include <asm/atomic.h>
 #include "vmcs12.h"
 #include "vmx.h"
 #include "x86.h"
 
+
+
+
 MODULE_AUTHOR("Qumranet");
 MODULE_LICENSE("GPL");
+
+extern atomic64_t cnt_exit;
+extern atomic_t count_the_exits;
+
 
 #ifdef MODULE
 static const struct x86_cpu_id vmx_cpu_id[] = {
@@ -173,6 +183,8 @@ static u32 vmx_possible_passthrough_msrs[MAX_POSSIBLE_PASSTHROUGH_MSRS] = {
 	MSR_CORE_C6_RESIDENCY,
 	MSR_CORE_C7_RESIDENCY,
 };
+
+
 
 /*
  * These 2 parameters are used to config the controls for Pause-Loop Exiting:
@@ -6012,10 +6024,16 @@ void dump_vmcs(struct kvm_vcpu *vcpu)
  */
 static int __vmx_handle_exit(struct kvm_vcpu *vcpu, fastpath_t exit_fastpath)
 {
+	uint64_t start = rdtsc();
 	struct vcpu_vmx *vmx = to_vmx(vcpu);
 	union vmx_exit_reason exit_reason = vmx->exit_reason;
 	u32 vectoring_info = vmx->idt_vectoring_info;
 	u16 exit_handler_index;
+	
+	atomic_inc(&cnt_exit);
+	uint64_t ending;
+
+	
 
 	/*
 	 * Flush logged GPAs PML buffer, this will make dirty_bitmap more
@@ -6172,6 +6190,10 @@ static int __vmx_handle_exit(struct kvm_vcpu *vcpu, fastpath_t exit_fastpath)
 						kvm_vmx_max_exit_handlers);
 	if (!kvm_vmx_exit_handlers[exit_handler_index])
 		goto unexpected_vmexit;
+	
+	ending = rdtsc();
+
+	atomic64_fetch_add(end-start, &cnt_exit);
 
 	return kvm_vmx_exit_handlers[exit_handler_index](vcpu);
 
