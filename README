@@ -1,9 +1,9 @@
-CMPE 283: Number of team members: 1
+# CMPE 283: Number of team members: 1
 
-Name: Vineeth Reddy Pati
-SJSU ID: 015227810
+# Name: Vineeth Reddy Pati
+# SJSU ID: 015227810
 
-Assignment 1: Finding out what the VM-x features are.
+# Assignment 1: Finding out what the VM-x features are.
 
 This assignment basically deals with the functionality involved in determining what are the features available in a CPU.
 
@@ -18,13 +18,14 @@ sudo insmod ./cmpe283.ko
 6) Use dmesg to log the VMX features in the Kernel log
 
 
-Assignment 2: 
+# Assignment 2: 
 Make the linux kernel environment ready by cloning the git and executing the commands below:
 1) cp /boot/config-$(uname -r) .config
 2) make oldconfig
 3) make -j 8 modules_install
 4) make install
 
+After this, we need to run ubuntu inside Inner VM. 
 
 
 After making relevant changes to cpuid.c and vmx.c, compile the kernel using the commands below
@@ -35,6 +36,8 @@ c) rmmod kvm_intel
 d) rmmod kvm
 e) modprobe kvm
 f) modprobe kvm_intel
+
+After staring Inner vm, we run the test file to check the output.
 
 
 
