@@ -1,6 +1,8 @@
-#CMPE 283: Number of team members: 1
+
+# CMPE 283: Number of team members: 1
 
 # Name: Vineeth Reddy Pati
+
 # SJSU ID: 015227810
 
 # Assignment 1: Finding out what the VM-x features are.
@@ -19,6 +21,7 @@ sudo insmod ./cmpe283.ko
 
 
 # Assignment 2: 
+
 Make the linux kernel environment ready by cloning the git and executing the commands below:
 1) cp /boot/config-$(uname -r) .config
 2) make oldconfig
