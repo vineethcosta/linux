@@ -80,6 +80,9 @@ value during deletion and creation fo file operations.FOr exit codes  28, 46, 47
 4) Least frequent exit types: 46, 47 and 54
    Most frequent exit types:  0, 28, 30 and 48
    
+ Screenshots of few least frequent:
+ Screenshots of few most frequent:
+   
 
 Assignment 4:
 
@@ -90,11 +93,24 @@ Steps followed:
 After running the 0x4FFFFFFD by enabling the nested paging, we see the exit count for each exit reason.After that, I removed kvm_intel using 'rmmod kvm_intel' and reloaded it
 by setting the ept value to 0(forcing to enable shadow paging). Now we can get the total exit counts from outer VM using dmesg command.Now we have total count if nested paging is enabled and shadow paging enabled.
 
+Here are some of the sample output prints from with and without ept exit count outputs:
+
+With nested paging enabled, the exit count for exit reason 30 is less:
+https://github.com/vineethcosta/linux/blob/master/exitcountless30-nestedpaging.png
+
+With shadow paging enabled, the exit count for exit reason 30 is more:
+https://github.com/vineethcosta/linux/blob/master/exitcounthigh30-shadowpaging.png
+
+This shows significant increase in exit count when shadow paging is enabled( one of the sample examples)
+
+
 Answers:
-3) THe number of exits for shadow paging are quite huge when compared to nested paging. This might occur because in shadow paging, data is fragmented and shattered and concurrent operations
+3) The number of exits for shadow paging are quite huge when compared to nested paging. This might occur because in shadow paging, data is fragmented and shattered and concurrent operations
 are also hard to execute.THus its architecture itself requires more additional exits to function as a VMM.
 
-4) For the exit 48, we observe that there is a significant rise of exits when nested paging is disabled. We can also observe other exit counts to considerably rise when shadow paging is forcible enabled
+4) For the exit reason 30, we observe that there is a significant rise of exits when nested paging is disabled (Attached screenshots). We can also observe other exit counts to considerably rise when shadow paging is forcibly enabled
+
+
 
 
 
