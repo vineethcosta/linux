@@ -48,6 +48,57 @@ https://github.com/vineethcosta/linux/blob/master/Assignment2Screenshot.png
 
 
 
+# Assignment 3
+
+Vineeth Reddy Pati (015227810)
+
+The inbuilt configuration of ssignment 1 has been used and code changes have been made on top of it.
+
+Steps followed to acheive assignment 3:
+I collected all the exit reasons possible that can be configured and configured it to the KVM. FOr the EAX value 0x4FFFFFFD and 0x4FFFFFFC, I have made changes in the vmx.c and cpuid.c files.
+After doing so, I have compiled the Kernel using the following steps:
+
+a) make -j 8 modules
+b) make INSTALL_MOD_STRIP=1 modules_install
+c) lsmod | grep kvm
+d) rmmod kvm_intel
+e) rmmod kvm
+f) lsmod | grep kvm
+g) modprobe kvm
+h) modprobe kvm_intel
+i) lsmod | grep kvm
+
+
+Started the inner Virtual Machine.
+
+
+Answers for Questions:
+
+3) Exit count values which are greater than 0 were majorly observed for 0, 28, 30, 40, 45, 46, 47, 48 and 54. For the exit codes 0, 30, 45, 48, the count increased to a very high value during reboot, but increased with a lower
+value during deletion and creation fo file operations.FOr exit codes  28, 46, 47, 54, the count only increased during reboot by a stable rate.
+
+4) Least frequent exit types: 46, 47 and 54
+   Most frequent exit types:  0, 28, 30 and 48
+   
+
+Assignment 4:
+
+Completed by Vineeth Reddy Pati(015227810)
+
+Steps followed:
+
+After running the 0x4FFFFFFD by enabling the nested paging, we see the exit count for each exit reason.After that, I removed kvm_intel using 'rmmod kvm_intel' and reloaded it
+by setting the ept value to 0(forcing to enable shadow paging). Now we can get the total exit counts from outer VM using dmesg command.Now we have total count if nested paging is enabled and shadow paging enabled.
+
+Answers:
+3) THe number of exits for shadow paging are quite huge when compared to nested paging. This might occur because in shadow paging, data is fragmented and shattered and concurrent operations
+are also hard to execute.THus its architecture itself requires more additional exits to function as a VMM.
+
+4) For the exit 48, we observe that there is a significant rise of exits when nested paging is disabled. We can also observe other exit counts to considerably rise when shadow paging is forcible enabled
+
+
+
+
 
 
 
