@@ -52,10 +52,10 @@ https://github.com/vineethcosta/linux/blob/master/Assignment2Screenshot.png
 
 Vineeth Reddy Pati (015227810)
 
-The inbuilt configuration of ssignment 1 has been used and code changes have been made on top of it.
+The inbuilt configuration of assignment 1 has been used and code changes have been made on top of it.
 
 Steps followed to acheive assignment 3:
-I collected all the exit reasons possible that can be configured and configured it to the KVM. FOr the EAX value 0x4FFFFFFD and 0x4FFFFFFC, I have made changes in the vmx.c and cpuid.c files.
+I collected all the exit reasons possible that can be configured and configured it to the KVM. For the EAX value 0x4FFFFFFD and 0x4FFFFFFC, I have made changes in the vmx.c and cpuid.c files.
 After doing so, I have compiled the Kernel using the following steps:
 
 a) make -j 8 modules
@@ -75,13 +75,13 @@ Started the inner Virtual Machine.
 Answers for Questions:
 
 3) Exit count values which are greater than 0 were majorly observed for 0, 28, 30, 40, 45, 46, 47, 48 and 54. For the exit codes 0, 30, 45, 48, the count increased to a very high value during reboot, but increased with a lower
-value during deletion and creation fo file operations.FOr exit codes  28, 46, 47, 54, the count only increased during reboot by a stable rate.
+value during deletion and creation of file operations. For exit codes  28, 46, 47, 54, the count only increased during reboot by a stable rate.
 
 4) Least frequent exit types: 46, 47 and 54
    Most frequent exit types:  0, 28, 30 and 48
    
- Screenshots of few least frequent:
- Screenshots of few most frequent:
+ Screenshots of few least frequent exit codes: https://github.com/vineethcosta/linux/blob/master/LeastFrequent.png
+ Screenshots of few most frequent exit codes: https://github.com/vineethcosta/linux/blob/master/mostfrequent.png
    
 
 Assignment 4:
