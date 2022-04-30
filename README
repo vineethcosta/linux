@@ -106,9 +106,9 @@ This shows significant increase in exit count when shadow paging is enabled( one
 
 Answers:
 3) The number of exits for shadow paging are quite huge when compared to nested paging. This might occur because in shadow paging, data is fragmented and shattered and concurrent operations
-are also hard to execute.THus its architecture itself requires more additional exits to function as a VMM.
+are also hard to execute.THus its architecture itself requires more additional exits to function as a VMM. This is expected behaviour from shadow paging)
 
-4) For the exit reason 30, we observe that there is a significant rise of exits when nested paging is disabled (Attached screenshots). We can also observe other exit counts to considerably rise when shadow paging is forcibly enabled
+4) For the exit reason 30, we observe that there is a significant rise of exits when nested paging is disabled (Attached screenshots). We can also observe other exit counts to considerably rise when shadow paging is forcibly enabled when compared to nested paging
 
 
 
